@@ -3,7 +3,7 @@ module S3
     include Parser
     include Proxies
 
-    attr_reader :access_key_id, :secret_access_key, :use_ssl, :use_vhost, :proxy
+    attr_reader :access_key_id, :secret_access_key, :use_ssl, :use_vhost, :proxy, :host
 
     # Compares service to other, by <tt>access_key_id</tt> and
     # <tt>secret_access_key</tt>
@@ -37,6 +37,7 @@ module S3
       @use_vhost = options.fetch(:use_vhost, true)
       @timeout = options.fetch(:timeout, 60)
       @debug = options.fetch(:debug, false)
+      @host = options.fetch(:debug, HOST)
 
       raise ArgumentError, "Missing proxy settings. Must specify at least :host." if options[:proxy] && !options[:proxy][:host]
       @proxy = options.fetch(:proxy, nil)
@@ -90,7 +91,8 @@ module S3
                                :use_ssl => @use_ssl,
                                :timeout => @timeout,
                                :debug => @debug,
-                               :proxy => @proxy)
+                               :proxy => @proxy,
+                               :host => @host)
     end
   end
 end

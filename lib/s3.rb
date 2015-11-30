@@ -22,6 +22,6 @@ require "s3/signature"
 require "s3/version"
 
 module S3
-  # Default (and only) host serving S3 stuff
+  # Default host serving S3 stuff
   HOST = "s3.amazonaws.com"
 end
